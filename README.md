@@ -26,21 +26,21 @@ It follows a clean and modular structure inspired by standard Node.js best pract
 
 taskflow/
 │
-├── middleware/        # Custom middlewares
-│   ├── auth.js        # Authentication middleware (future use)
-│   ├── error.js       # Centralized error handling
-│   └── logger.js      # Request / activity logging
+├── middleware/ # Custom middlewares
+│ ├── auth.js # Authentication middleware (future use)
+│ ├── error.js # Centralized error handling
+│ └── logger.js # Request / activity logging
 │
-├── models/            # Mongoose schemas
-│   └── task.js
+├── models/ # Mongoose schemas
+│ └── task.js
 │
-├── routes/            # API routes
-│   └── tasks.js
+├── routes/ # API routes
+│ └── tasks.js
 │
-├── startup/           # Application startup logic
-│   └── routes.js
+├── startup/ # Application startup logic
+│ └── routes.js
 │
-├── index.js           # Entry point of the application
+├── index.js # Entry point of the application
 ├── package.json
 ├── .gitignore
 └── README.md
