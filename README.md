@@ -22,28 +22,26 @@ It follows a clean and modular structure inspired by standard Node.js best pract
 4. Mongoose
 5. Joi
 
- Project Structure
+ - Project Structure
 
-taskflow/
-│
-├── middleware/ # Custom middlewares
-│ ├── auth.js # Authentication middleware (future use)
-│ ├── error.js # Centralized error handling
-│ └── logger.js # Request / activity logging
-│
-├── models/ # Mongoose schemas
-│ └── task.js
-│
-├── routes/ # API routes
-│ └── tasks.js
-│
-├── startup/ # Application startup logic
-│ └── routes.js
-│
-├── index.js # Entry point of the application
-├── package.json
-├── .gitignore
-└── README.md
+* middleware/ — Custom middlewares  
+  * auth.js — Authentication middleware (future use)  
+  * error.js — Centralized error handling  
+  * logger.js — Request / activity logging  
+
+* models/ — Mongoose schemas  
+  * task.js  
+
+* routes/ — API routes  
+  * tasks.js  
+
+* startup/ — Application startup logic  
+  * routes.js  
+
+* index.js — Entry point of the application  
+* package.json — Project metadata and dependencies  
+* .gitignore — Ignored files  
+* README.md — Project documentation 
 
 - How to Run the Project
 1. Clone the repository
