@@ -59,6 +59,7 @@ taskflow/
 All APIs were tested using Postman. Example: http://localhost:3000/api/tasks
 
 - Purpose
+  
 This project was built as part of learning backend development fundamentals.
 It focuses on clarity, structure, and correct implementation of core concepts rather than advanced features.
 
