@@ -1,9 +1,9 @@
-const express = require('express');
 const tasks = require('../routes/tasks');
+const auth = require('../routes/auth');
 
 module.exports = function(app){
-    app.use(express.json());
     app.use('/api/tasks', tasks);
+    app.use('/api/auth', auth);
 
     // TEST ROUTE
     app.get('/', (req, res) => {

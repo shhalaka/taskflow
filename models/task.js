@@ -18,15 +18,20 @@ const taskSchema = new mongoose.Schema({
     enum: ['low', 'medium', 'high'],
     default: 'medium'
   },
-  isCompleted: {
-    type: Boolean,
-    default: false
-  },
   dateCreated: {
     type: Date,
     default: Date.now
   },
-  dueDate: Date
+  dueDate: Date,
+  createdBy: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: 'User',
+  required: true
+  },
+  isCompleted: {
+  type: Boolean,
+  default: false
+}
 });
 
 const Task = mongoose.model('Task', taskSchema);
