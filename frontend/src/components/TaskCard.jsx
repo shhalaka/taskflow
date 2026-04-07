@@ -12,6 +12,12 @@ function TaskCard({ task, onDelete, onToggle, onEdit }) {
     low: 'bg-green-100 text-green-600'
   };
 
+  const priorityDot = {
+    high: 'bg-red-400',
+    medium: 'bg-yellow-400',
+    low: 'bg-green-400'
+  };
+
   const handleSave = async () => {
     await onEdit(task._id, { title, description, priority, isCompleted: task.isCompleted });
     setEditMode(false);
@@ -24,10 +30,9 @@ function TaskCard({ task, onDelete, onToggle, onEdit }) {
     setEditMode(false);
   };
 
-  // EDIT MODE
   if (editMode) {
     return (
-      <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-300 space-y-3">
+      <div className="bg-white rounded-xl p-4 shadow-sm border-2 border-gray-300 space-y-3 transition-all">
         <input
           type="text"
           value={title}
@@ -71,34 +76,41 @@ function TaskCard({ task, onDelete, onToggle, onEdit }) {
     );
   }
 
-  // NORMAL MODE
   return (
-    <div className={`bg-white rounded-xl p-4 shadow-sm border border-gray-100 flex items-start justify-between gap-4 ${task.isCompleted ? 'opacity-50' : ''}`}>
+    <div className={`bg-white rounded-xl p-4 shadow-sm border border-gray-100 flex items-start justify-between gap-4 hover:shadow-md hover:border-gray-200 transition-all duration-200 ${task.isCompleted ? 'opacity-60' : ''}`}>
 
-      <div className="flex items-start gap-3">
+      <div className="flex items-start gap-3 flex-1 min-w-0">
         <input
           type="checkbox"
           checked={task.isCompleted}
           onChange={() => onToggle(task._id, !task.isCompleted)}
-          className="mt-1 cursor-pointer w-4 h-4 accent-gray-700"
+          className="mt-1 cursor-pointer w-4 h-4 accent-gray-700 shrink-0"
         />
-        <div>
-          <p className={`text-sm font-medium text-gray-800 ${task.isCompleted ? 'line-through' : ''}`}>
+        <div className="flex-1 min-w-0">
+          <p className={`text-sm font-medium text-gray-800 truncate ${task.isCompleted ? 'line-through text-gray-400' : ''}`}>
             {task.title}
           </p>
           {task.description && (
-            <p className="text-xs text-gray-400 mt-0.5">{task.description}</p>
+            <p className="text-xs text-gray-400 mt-0.5 truncate">{task.description}</p>
           )}
-          <span className={`text-xs px-2 py-0.5 rounded-full mt-1 inline-block font-medium ${priorityColors[task.priority] || 'bg-gray-100 text-gray-500'}`}>
-            {task.priority}
-          </span>
+          <div className="flex items-center gap-2 mt-1.5">
+            <div className={`w-1.5 h-1.5 rounded-full ${priorityDot[task.priority]}`} />
+            <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${priorityColors[task.priority] || 'bg-gray-100 text-gray-500'}`}>
+              {task.priority}
+            </span>
+            {task.dueDate && (
+              <span className="text-xs text-gray-400">
+                Due {new Date(task.dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+              </span>
+            )}
+          </div>
         </div>
       </div>
 
       <div className="flex gap-2 items-center shrink-0">
         <button
           onClick={() => setEditMode(true)}
-          className="text-xs text-gray-400 hover:text-gray-700 border border-gray-200 px-2 py-1 rounded-lg transition"
+          className="text-xs text-gray-400 hover:text-gray-700 border border-gray-200 px-2.5 py-1 rounded-lg transition hover:border-gray-400"
         >
           Edit
         </button>
