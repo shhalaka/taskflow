@@ -38,13 +38,12 @@ const Task = mongoose.model('Task', taskSchema);
 
 function validateTask(task) {
   const schema = Joi.object({
-    title: Joi.string().min(3).max(50).required(),
-    description: Joi.string().min(3).max(255),
+    title: Joi.string().min(3).max(50),
+    description: Joi.string().min(3).max(255).allow(''),
     priority: Joi.string().valid('low', 'medium', 'high'),
     isCompleted: Joi.boolean(),
     dueDate: Joi.date()
   });
-
   return schema.validate(task);
 }
 
